@@ -8,17 +8,14 @@ DAEMON_NO_CHDIR       = 1
 DAEMON_NO_CLOSE_STDIO = 0
 
 
-
-
-GSOAP_VERSION     = 2.8.66
-GSOAP_INSTALL_DIR = ./gsoap-2.8
-GSOAP_DIR         = $(GSOAP_INSTALL_DIR)/gsoap
+GSOAP_DIR         = /usr/share/gsoap
+GSOAP_CUSTOM_DIR  = $(GSOAP_DIR)/custom
 GSOAP_PLUGIN_DIR  = $(GSOAP_DIR)/plugin
 GSOAP_IMPORT_DIR  = $(GSOAP_DIR)/import
 
 
-SOAPCPP2          = $(GSOAP_DIR)/src/soapcpp2
-WSDL2H            = $(GSOAP_DIR)/wsdl/wsdl2h
+SOAPCPP2          = soapcpp2
+WSDL2H            = wsdl2h
 GSOAP_CONFIGURE   = --disable-c-locale --disable-ssl
 
 
@@ -39,17 +36,16 @@ CFLAGS           += -I$(COMMON_DIR)
 CFLAGS           += -I$(GENERATED_DIR)
 CFLAGS           += -I$(GSOAP_DIR) -I$(GSOAP_PLUGIN_DIR) -I$(GSOAP_IMPORT_DIR)
 CFLAGS           += -O2  -Wall  -pipe
+CFLAGS           += -lgsoapssl
 
 CC               ?= gcc
 
 
 
-
-SOAP_SRC = $(GSOAP_DIR)/stdsoap2.c         \
-           $(GSOAP_PLUGIN_DIR)/wsaapi.c    \
-           $(GSOAP_PLUGIN_DIR)/wsddapi.c   \
+SOAP_SRC = src/stdsoap2.c \
+           $(GENERATED_DIR)/wsaapi.c    \
+           $(GENERATED_DIR)/wsddapi.c   \
            $(GENERATED_DIR)/soapClient.c
-
 
 
 # Add your source files to the list.
@@ -66,30 +62,21 @@ SOURCES  = $(COMMON_DIR)/$(DAEMON_NAME).c   \
 
 
 
-
-
 OBJECTS  := $(patsubst %.c,  %.o, $(SOURCES) )
 OBJECTS  := $(patsubst %.cpp,%.o, $(OBJECTS) )
 OBJECTS  := $(patsubst %.S,  %.o, $(OBJECTS) )
 
-
 DEBUG_SUFFIX   = debug
-
 DEBUG_OBJECTS := $(patsubst %.o, %_$(DEBUG_SUFFIX).o, $(OBJECTS) )
-
 
 
 
 .PHONY: all
 all: debug release
 
-
-
 .PHONY: release
 release: CFLAGS := -s  $(CFLAGS)
 release: $(DAEMON_NAME)
-
-
 
 .PHONY: debug
 debug: DAEMON_NO_CLOSE_STDIO = 1
@@ -177,8 +164,9 @@ endif
 # ---- gSOAP ----
 
 $(GENERATED_DIR)/wsdd.h:
-	@$(build_gsoap)
 	@mkdir -p $(GENERATED_DIR)
+	@cp $(GSOAP_PLUGIN_DIR)/wsaapi.c $(GENERATED_DIR)
+	@cp $(GSOAP_PLUGIN_DIR)/wsddapi.c $(GENERATED_DIR)
 	$(WSDL2H) -cg -t $(GSOAP_DIR)/WS/typemap.dat  -o $@  wsdl/remotediscovery.wsdl
 
 
@@ -211,34 +199,6 @@ define build_bin
     $(CC)  $1 -o $@  $(CFLAGS)
     @echo "\n---- Compiled $@ ver $(DAEMON_MAJOR_VERSION).$(DAEMON_MINOR_VERSION).$(DAEMON_PATCH_VERSION) ----\n"
 endef
-
-
-
-define build_gsoap
-
-    # get archive
-    if [ ! -f SDK/gsoap.zip ]; then \
-        mkdir -p SDK; \
-        wget -O ./SDK/gsoap.zip.tmp "https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_$(GSOAP_VERSION).zip/download"   || \
-        wget -O ./SDK/gsoap.zip.tmp "https://sourceforge.net/projects/gsoap2/files/oldreleases/gsoap_$(GSOAP_VERSION).zip/download" || \
-        wget -O ./SDK/gsoap.zip.tmp "https://master.dl.sourceforge.net/project/gsoap2/oldreleases/gsoap_$(GSOAP_VERSION).zip"       && \
-        mv ./SDK/gsoap.zip.tmp ./SDK/gsoap.zip; \
-    fi
-
-    # unzip
-    if [ ! -f $(GSOAP_INSTALL_DIR)/README.txt ]; then \
-         unzip ./SDK/gsoap.zip; \
-    fi
-
-    # build
-    if [ ! -f $(SOAPCPP2) ] || [ ! -f $(WSDL2H) ]; then \
-         cd $(GSOAP_INSTALL_DIR); \
-         ./configure $(GSOAP_CONFIGURE) && \
-         make -j1; \
-         cd ..;\
-    fi
-endef
-
 
 
 
