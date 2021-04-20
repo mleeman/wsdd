@@ -1,0 +1,15 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: wsdd
+Upstream-Contact: Stas Koynov <skojnov@yandex.ru>
+Source: https://github.com/KoynovStas/wsdd
+License: BSD-3-clause
+
+Files: *
+Copyright:
+ (c) 2017-2021 Stas Koynov
+License: BSD-3-clause
+
+Files: *
+Copyright:
+ (c) 2021 Marc Leeman <marc.leeman@gmail.com>
+License: BSD-3-clause
