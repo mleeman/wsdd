@@ -1,3 +1,10 @@
+wsdd (0.0.1~televic10+3) buster-televic-unstable; urgency=medium
+
+  * debian: add working dir
+  * debian: parametrise INTERFACE
+
+ -- Marc Leeman <m.leeman@televic.com>  Wed, 21 Apr 2021 13:17:37 +0200
+
 wsdd (0.0.1~televic10+2) buster-televic-unstable; urgency=medium
 
   * ignore vim backup files
