@@ -4,11 +4,12 @@ After=network-online.target
 
 [Service]
 Type=forking
+Environment=INTERFACE=eth0
 WorkingDirectory=/var/lib/wsdd
 PIDFile=/run/wsdd.pid
 ExecStart=/usr/bin/wsdd \
 	  --pid_file /run/wsdd.pid \
-	  --if_name br0 \
+	  --if_name ${INTERFACE} \
     --type tdn:NetworkVideoTransmitter \
     --xaddr http://%%s:1000/onvif/device_service \
     --scope \"onvif://www.onvif.org/name/TelevicRelay \
