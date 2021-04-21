@@ -1,3 +1,17 @@
+wsdd (0.0.1~televic10+2) buster-televic-unstable; urgency=medium
+
+  * ignore vim backup files
+  * copy in stdsoap2.c (ugly)
+  * Makefile: use system lib gsoap
+  * debian: update copyright for lintian
+  * debian: depend on gsoap (versioned)
+  * debian: correct description
+  * lintian: systemd-service-file-refers-to-obsolete-target
+  * debian: add lintian-overrides
+  * debian: use buster style lintian-overrides
+
+ -- Marc Leeman <m.leeman@televic.com>  Wed, 21 Apr 2021 10:51:21 +0200
+
 wsdd (0.0.1~televic10+1) buster-televic-unstable; urgency=medium
 
   * Initial release
