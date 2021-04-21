@@ -1,6 +1,5 @@
 [Unit]
 Description=ONVIF WS-Discovery service (server side)
-After=syslog.target
 After=network-online.target
 
 [Service]
