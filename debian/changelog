@@ -1,3 +1,9 @@
+wsdd (2.1.0~televic10+2) buster-televic-unstable; urgency=medium
+
+  * debian: load environment file
+
+ -- Marc Leeman <m.leeman@televic.com>  Thu, 22 Apr 2021 15:20:06 +0200
+
 wsdd (2.1.0~televic10+1) buster-televic-unstable; urgency=medium
 
   * bump version to match upstream
