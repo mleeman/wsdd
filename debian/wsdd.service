@@ -5,6 +5,7 @@ After=network-online.target
 [Service]
 Type=forking
 Environment=INTERFACE=eth0
+EnvironmentFile=-/etc/default/wsdd
 WorkingDirectory=/var/lib/wsdd
 PIDFile=/run/wsdd.pid
 ExecStart=/usr/bin/wsdd \
