@@ -1,1 +1,2 @@
-wsdd /usr/bin/
+wsdd             /usr/bin/
+data/wsdd/*      /

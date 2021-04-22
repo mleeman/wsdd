@@ -1,0 +1,2 @@
+add rule inet filter input udp dport 3702 counter accept
+add rule inet filter input tcp dport 3702 counter accept
