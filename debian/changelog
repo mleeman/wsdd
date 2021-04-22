@@ -1,3 +1,9 @@
+wsdd (2.1.0~televic10+3) buster-televic-unstable; urgency=medium
+
+  * wsdd: install nft config file firewall
+
+ -- Marc Leeman <m.leeman@televic.com>  Thu, 22 Apr 2021 16:55:34 +0200
+
 wsdd (2.1.0~televic10+2) buster-televic-unstable; urgency=medium
 
   * debian: load environment file
