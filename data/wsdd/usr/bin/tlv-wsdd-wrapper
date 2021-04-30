@@ -1,0 +1,13 @@
+#!/bin/bash
+
+INTERFACE="eth0"
+
+if [ -e /etc/default/wsdd ]; then
+  . /etc/default/wsdd
+fi
+
+killall -9 wsdd || { echo "No wsdd killed"; }
+
+exec /usr/bin/wsdd --pid_file /run/wsdd.pid --if_name ${INTERFACE} --type tdn:NetworkVideoTransmitter --xaddr http://%s/onvif/device_service --scope "onvif://www.onvif.org/name/TelevicRelay onvif://www.onvif.org/Profile/Streaming onvif://www.onvif.org/location/ANY"
+
+echo "Started wsdd: $?"

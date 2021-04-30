@@ -4,18 +4,8 @@ After=network-online.target
 
 [Service]
 Type=forking
-Environment=INTERFACE=eth0
-EnvironmentFile=-/etc/default/wsdd
-WorkingDirectory=/var/lib/wsdd
 PIDFile=/run/wsdd.pid
-ExecStart=/usr/bin/wsdd \
-	  --pid_file /run/wsdd.pid \
-	  --if_name ${INTERFACE} \
-    --type tdn:NetworkVideoTransmitter \
-    --xaddr http://%%s/onvif/device_service \
-    --scope \"onvif://www.onvif.org/name/TelevicRelay \
-	onvif://www.onvif.org/Profile/Streaming \
-	onvif://www.onvif.org/location/ANY\"
+ExecStart=/usr/bin/tlv-wsdd-wrapper
 TimeoutSec=4
 Restart=always
 RestartSec=2
