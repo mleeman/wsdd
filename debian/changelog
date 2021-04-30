@@ -1,3 +1,9 @@
+wsdd (2.1.0~televic10+4) buster-televic-unstable; urgency=medium
+
+  * ONVIF device manager requires service to run on port 80
+
+ -- Marc Leeman <m.leeman@televic.com>  Fri, 30 Apr 2021 09:31:14 +0200
+
 wsdd (2.1.0~televic10+3) buster-televic-unstable; urgency=medium
 
   * wsdd: install nft config file firewall
