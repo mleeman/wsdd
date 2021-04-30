@@ -12,7 +12,7 @@ ExecStart=/usr/bin/wsdd \
 	  --pid_file /run/wsdd.pid \
 	  --if_name ${INTERFACE} \
     --type tdn:NetworkVideoTransmitter \
-    --xaddr http://%%s:1000/onvif/device_service \
+    --xaddr http://%%s/onvif/device_service \
     --scope \"onvif://www.onvif.org/name/TelevicRelay \
 	onvif://www.onvif.org/Profile/Streaming \
 	onvif://www.onvif.org/location/ANY\"
