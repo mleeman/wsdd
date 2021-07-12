@@ -1,3 +1,9 @@
+wsdd (2.1.0~televic10+6) buster-televic-unstable; urgency=medium
+
+  * tlv-wsdd-wrapper: allow specifying IP in default file
+
+ -- Marc Leeman <m.leeman@televic.com>  Mon, 12 Jul 2021 11:31:40 +0200
+
 wsdd (2.1.0~televic10+5) buster-televic-unstable; urgency=medium
 
   * wsdd.service: use a wrapper file
