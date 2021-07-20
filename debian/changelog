@@ -1,8 +1,8 @@
-wsdd (2.1.0~televic10+7) bullseye-televic-unstable; urgency=medium
+wsdd (2.1.0~televic11+1) bullseye-televic-unstable; urgency=medium
 
   * debian: depend on generic libcrypto++-dev
 
- -- Marc Leeman <m.leeman@televic.com>  Tue, 20 Jul 2021 09:18:16 +0200
+ -- Marc Leeman <m.leeman@televic.com>  Tue, 20 Jul 2021 09:19:56 +0200
 
 wsdd (2.1.0~televic10+6) buster-televic-unstable; urgency=medium
 
